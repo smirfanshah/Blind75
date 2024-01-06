@@ -2,6 +2,8 @@
 #include<vector>
 #include<string>
 #include<map>
+#include<unordered_set>
+#include<set>
 #include<algorithm>
 using namespace std;
 
@@ -125,6 +127,30 @@ int longestConsecutive(vector<int>& nums) {
 	if (count > maxcount)
 	{
 		maxcount = count;
+	}
+	return maxcount;
+}
+int longestConsecutive2(vector<int>& nums) { //O(n) time complexity
+	if (nums.empty())
+	{
+		return 0;
+	}
+	unordered_set<int>set(nums.begin(),nums.end());	
+	int maxcount = 1;
+	for (int i = 0; i < nums.size(); i++)
+	{
+		if (set.find(nums[i]-1)==set.end())// agar ye element se ek chota rest of the set me exit nai krta, 
+			//agr nai krta to num[i] ek consecutive sequence ka start ha
+		{
+			int currentnum = nums[i];  //pichle element check hogya ha ab us se agla element se agy ka silsla check krna ha
+			int count = 0;
+			while (set.find(currentnum + 1)!=set.end())//mtlb usy incremented element mil gya ha
+			{
+				currentnum++; //agle consecutive elements ko check krne k liye iska increment kren ge
+				count++;
+			}
+			count=max(count, maxcount);
+		}
 	}
 	return maxcount;
 }
