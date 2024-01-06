@@ -86,7 +86,7 @@ vector<int> productExceptSelf(vector<int>& nums) {
 	}
 	return result;
 }
-int main6() {
+int main6() { //btw this solution's time complexity is O(nlogn) but it should be O(n), i am trying to do it in O(1)
 
 	vector<int> nums = { 1, 2, 3 };
 
@@ -102,4 +102,36 @@ int main6() {
 	}
 
 	return 0;
+}
+int longestConsecutive(vector<int>& nums) {
+	sort(nums.begin(), nums.end());
+	int count = 1;
+	int maxcount = 1;
+	for (int i = 1; i < nums.size(); i++)
+	{
+		if ((nums[i] - nums[i-1]) == 1)
+		{
+			count++;
+		}
+		else if (nums[i] != nums[i - 1])
+		{
+			if (count > maxcount)
+			{
+				maxcount = count;
+			}
+			count = 1;
+		}
+	}
+	if (count > maxcount)
+	{
+		maxcount = count;
+	}
+	return maxcount;
+}
+int main7()
+{
+	vector<int>nums;
+	nums = { 1,2,0,1 };
+	int result = longestConsecutive(nums);
+	cout << "\nResult="<<result;
 }
