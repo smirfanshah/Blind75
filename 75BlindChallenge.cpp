@@ -88,7 +88,7 @@ vector<int> productExceptSelf(vector<int>& nums) {
 	}
 	return result;
 }
-int main6() { //btw this solution's time complexity is O(nlogn) but it should be O(n), i am trying to do it in O(1)
+int main6() { 
 
 	vector<int> nums = { 1, 2, 3 };
 
@@ -105,7 +105,7 @@ int main6() { //btw this solution's time complexity is O(nlogn) but it should be
 
 	return 0;
 }
-int longestConsecutive(vector<int>& nums) {
+int longestConsecutive(vector<int>& nums) { //btw this solution's time complexity is O(nlogn) but it should be O(n), i am trying to do it in O(1)
 	sort(nums.begin(), nums.end());
 	int count = 1;
 	int maxcount = 1;
