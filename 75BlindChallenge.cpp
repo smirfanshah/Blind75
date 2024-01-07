@@ -275,3 +275,29 @@ int main10()
 	int ans = maxArea(height);
 	cout << "maxArea = "<<ans;
 }
+int maxProfit(vector<int>& prices) { //ek qism ka hum ne maximum diffrence nikalna ha, pehle ane wale most min ka bad me ane most max se 
+	if (prices.empty())
+	{
+		return 0;
+	}
+	int min = prices[0];
+	int maxi = 0;
+	for (int i = 1; i < prices.size(); i++)
+	{
+		if (min > prices[i])
+		{
+			min = prices[i];
+		}
+		else
+		{
+			maxi = max(maxi, prices[i] - min);
+		}
+	}
+	return maxi;
+}
+int main11()
+{
+	vector<int>nums = { 7,1,5,3,6,4 };
+	int ans = maxProfit(nums);
+	cout << "maxProfit = " << ans;
+}
