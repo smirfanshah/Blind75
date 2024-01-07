@@ -252,3 +252,26 @@ int main9()
 	}
 
 }
+int maxArea(vector<int>& height) {
+	int maxi = 1;
+	int left = 0;
+	int right = height.size() - 1;
+	while (left < right)
+	{
+		int width = right - left;
+		int length = min(height[left], height[right]);
+		int area = length * width;
+		maxi = max(maxi, area);
+		if (height[left] > height[right])
+			right--; //agr yaha pr left++ kr deta to bri value(jo iski apni ha) miss krwa kr isne agy chle jana tha, or faida nai hona tha
+		else
+			left++;
+	}
+	return maxi;
+}
+int main10()
+{
+	vector<int>height = { 1, 8, 6, 2, 5, 4, 8, 3, 7 };
+	int ans = maxArea(height);
+	cout << "maxArea = "<<ans;
+}
