@@ -161,3 +161,40 @@ int main7()
 	int result = longestConsecutive(nums);
 	cout << "\nResult="<<result;
 }
+bool isPalindrome(string s) {
+	int left = 0;
+	int right = s.size() - 1;
+	while (left < right)
+	{
+		while (left < right && !isalnum(s[left]))//if not legal num or alpha then leave it and move forward
+		{
+			left++;
+		}
+		while (left < right && !isalnum(s[right]))//if not legal num or alpha then leave it and move backard
+		{
+			right--;
+		}
+		char leftch = tolower(s[left]);
+		char rightch = tolower(s[right]);
+		if (leftch != rightch)
+		{
+			return false;
+		}
+		else
+		{
+			left++;
+			right--;
+		}
+	}
+	return true;
+}
+int main8()
+{
+	string s = "race a car";
+	if (isPalindrome(s))
+	{
+		cout << "true";
+	}
+	else
+		cout << "false";
+}
