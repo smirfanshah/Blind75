@@ -253,7 +253,7 @@ int main9()
 
 }
 int maxArea(vector<int>& height) {
-	int maxi = 1;
+	int maxi = 0;
 	int left = 0;
 	int right = height.size() - 1;
 	while (left < right)
