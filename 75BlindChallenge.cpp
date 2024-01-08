@@ -250,7 +250,7 @@ int main9()
 		}
 		cout << endl;
 	}
-
+	return 0;
 }
 int maxArea(vector<int>& height) {
 	int maxi = 0;
@@ -274,6 +274,7 @@ int main10()
 	vector<int>height = { 1, 8, 6, 2, 5, 4, 8, 3, 7 };
 	int ans = maxArea(height);
 	cout << "maxArea = "<<ans;
+	return 0;
 }
 int maxProfit(vector<int>& prices) { //ek qism ka hum ne maximum diffrence nikalna ha, pehle ane wale most min ka bad me ane most max se 
 	if (prices.empty())
@@ -300,4 +301,33 @@ int main11()
 	vector<int>nums = { 7,1,5,3,6,4 };
 	int ans = maxProfit(nums);
 	cout << "maxProfit = " << ans;
+	return 0;
+}
+int lengthOfLongestSubstring(string s) { //Using sliding Window
+	int n = s.length();
+	int left = 0,right = 0,count=0;
+	unordered_set<char> st;
+	while (right < n)
+	{
+		if (st.find(s[right]) == st.end())
+		{
+			st.insert(s[right]);
+			count = max(count, right - left + 1);//subarray
+			right++;
+		}
+		else
+		{
+			st.erase(s[left]);
+			left++;
+		}
+	}
+	return count;
+
+}
+int main12()
+{
+	string s = { "pwwkew" };
+	int a = lengthOfLongestSubstring(s);
+	cout << "LENGTH = " << a;
+	return 0;
 }
