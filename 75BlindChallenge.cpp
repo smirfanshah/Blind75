@@ -331,3 +331,35 @@ int main12()
 	cout << "LENGTH = " << a;
 	return 0;
 }
+int characterReplacement(string s, int k) {
+	int n = s.length();
+	int left = 0;
+	int right = 0;
+	int maxi = 0;
+	unordered_map<char, int> mp;
+	int result = 0;
+	while (right < n)
+	{
+		mp[s[right]]++;
+		maxi = max(maxi, mp[s[right]]);
+		// If the number of replacements needed is more than 'k',
+		// move the left pointer to shrink the window
+
+		if ((right-left+1-maxi)>k)
+		{
+			mp[s[left]]--;
+			left++;
+
+		}
+		result = max(result, right - left + 1);
+		right++;
+	}
+	return result;
+}
+int main13()
+{
+	string s = { "AAAA" };
+	int a = characterReplacement(s, 0);
+	cout << "Length= " << a;
+	return 0;
+}
