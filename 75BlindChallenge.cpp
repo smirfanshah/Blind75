@@ -363,3 +363,50 @@ int main13()
 	cout << "Length= " << a;
 	return 0;
 }
+bool isValidpair(char open, char close) {
+	return (open == '{' && close == '}') ||
+		(open == '(' && close == ')') ||
+		(open == '[' && close == ']');
+}
+bool isValid(string s) {
+	if (s.size() % 2 != 0)
+	{
+		return false;
+	}
+	stack<char> st;
+	while (!s.empty())
+	{
+		char cur = s.front();
+		if (cur == '{' || cur == '(' || cur == '[')
+		{
+			st.push(cur);
+
+		}
+		else if (cur == '}' || cur == ')' || cur == ']')
+		{
+			if (st.empty() || !isValidpair(st.top(), cur))
+			{
+				return false;
+			}
+			st.pop();
+		}
+		else
+		{
+			return false;
+		}
+
+		s.erase(s.begin());
+	}
+	return st.empty();
+}
+int main14() {
+	string s = "()";
+	if (isValid(s))
+	{
+		cout << "true";
+	}
+	else
+		cout << "false";
+
+	return 0;
+}
