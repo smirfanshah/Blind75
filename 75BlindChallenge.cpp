@@ -410,3 +410,61 @@ int main14() {
 
 	return 0;
 }
+bool isValidChar(char ch, const string& t) {
+	for (int i = 0; i < t.size(); i++) {
+		if (ch == t[i]) {
+			return true;
+		}
+	}
+	return false;
+}
+
+bool isValidWindow(const unordered_map<char, int>& st, const unordered_map<char, int>& target) {
+	for (const auto& entry : target) {
+		if (st.find(entry.first) == st.end() || st.at(entry.first) < entry.second) {
+			return false;
+		}
+	}
+	return true;
+}
+
+string minWindow(const string& s, const string& t) {
+	unordered_map<char, int> st;
+	unordered_map<char, int> target;
+
+	for (char ch : t) {
+		target[ch]++;
+	}
+
+	int right = 0;
+	int left = 0;
+	int mini = s.size() + 1;
+	int start = 0;
+
+	while (right < s.size()) {
+		if (isValidChar(s[right], t)) {
+			st[s[right]]++;
+			while (isValidWindow(st, target)) {
+				if (right - left + 1 < mini) {
+					mini = right - left + 1;
+					start = left;
+				}
+				if (isValidChar(s[left], t)) {
+					st[s[left]]--;
+				}
+				left++;
+			}
+		}
+		right++;
+	}
+
+	return (mini == s.size() + 1) ? "" : s.substr(start, mini);
+}
+int main15() {
+    string s = "ADOBECODEBANC";
+    string t = "ABC";
+    string result = minWindow(s, t);
+    cout << "Minimum window: " << result << endl;
+
+    return 0;
+}
