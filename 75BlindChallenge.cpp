@@ -497,3 +497,48 @@ int main16()
 	int a=findMin(nums);
 	cout << "Min =" << a;
 }
+int search(vector<int>& nums, int target) {
+	int right = nums.size() - 1, left = 0;
+	while (left <= right)
+	{
+		int mid = (left + right) / 2;
+		
+		if (nums[mid] == target)
+		{
+			return mid;
+		}
+		//checking whether i am in left sorted portion or right portion
+		if (nums[mid] > nums[left] )
+		{
+			if (nums[left] > target || target>nums[mid])
+			{
+				left = mid + 1;
+			}
+			else 
+			{
+				right = mid - 1;
+			}
+
+		}
+		else 
+		{
+			if (nums[mid] > target || target>nums[right])
+			{
+				right = mid - 1;
+			}
+			else 
+			{
+				left = mid + 1;
+			}
+
+		}
+	}
+	return -1;
+}
+int main17()
+{
+	vector<int>nums = { 4,5,6,-1,0,1,2 };
+	int a = search(nums, 0);
+	cout << "index =" << a;
+}
+
