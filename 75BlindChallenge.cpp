@@ -541,4 +541,50 @@ int main17()
 	int a = search(nums, 0);
 	cout << "index =" << a;
 }
+struct ListNode {
+	int val;
+	ListNode* next;
+	ListNode() : val(0), next(nullptr) {}
+	ListNode(int x) : val(x), next(nullptr) {}
+	ListNode(int x, ListNode* next) : val(x), next(next) {}
+	
+};
+
+ListNode* reverseList(ListNode* head)
+{
+	ListNode* prev = NULL;
+	ListNode* curr = head;
+	while (curr!= nullptr)
+	{
+		ListNode* forward = curr->next;
+		curr->next = prev;
+		prev = curr;
+		curr = forward;
+
+	}
+	return prev;
+
+}
+void printList(ListNode* head) {
+	while (head != nullptr) {
+		cout << head->val << " ";
+		head = head->next;
+	}
+	cout << endl;
+}
+int main18()
+{
+	ListNode* node = new ListNode(1);
+	node->next = new ListNode(2);
+	printList(node);
+	node= reverseList(node);
+	printList(node);
+	// Clean up the memory (deallocate the linked list)
+	while (node != nullptr) {
+		ListNode* temp = node;
+		node = node->next;
+		delete temp;
+	}
+
+}
 
