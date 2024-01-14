@@ -588,3 +588,53 @@ int main18()
 
 }
 
+ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+	ListNode* result = new ListNode();
+	ListNode* temp = result;
+
+	while (list1 != nullptr && list2!=nullptr)
+	{
+		if (list1->val <= list2->val)
+		{
+			temp->next = list1;
+			list1=list1->next;
+		}
+		else
+		{
+			temp->next = list2;
+			list2 = list2->next;
+		}
+		temp=temp->next;
+	}
+	if (list1 != nullptr)
+	{
+		temp->next = list1;
+	}
+	else
+	{
+		temp->next = list2;
+	}
+	return result->next;
+}
+int main19()
+{
+	ListNode* node = new ListNode(1);
+	node->next = new ListNode(2);
+	node->next->next = new ListNode(4);
+	ListNode* node1 = new ListNode(1);
+	node1->next = new ListNode(3);
+	node1->next->next = new ListNode(4);
+	printList(node);
+	printList(node1);
+	node = mergeTwoLists(node, node1);
+	printList(node);
+	// Clean up the memory (deallocate the linked list)
+	while (node != nullptr) {
+		ListNode* temp = node;
+		node = node->next;
+		delete temp;
+	}
+	return 0;
+
+}
+
