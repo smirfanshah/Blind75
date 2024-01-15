@@ -606,7 +606,7 @@ ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
 		}
 		temp=temp->next;
 	}
-	if (list1 != nullptr)
+	if (list1 != nullptr) //remaing part copied 
 	{
 		temp->next = list1;
 	}
