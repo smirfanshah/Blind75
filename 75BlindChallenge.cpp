@@ -811,3 +811,97 @@ int main22() {
 
 	return 0;
 }
+void printVectorOfLists(const std::vector<ListNode*>& lists) {
+	int i = 1;
+	for (const auto& list : lists) {
+		cout << "List " << i << " contains = ";
+		ListNode* current = list;
+		while (current) {
+			std::cout << current->val << " ";
+			current = current->next;
+		}
+		std::cout << std::endl;
+		i++;
+	}
+}
+ListNode* mergeKLists2(vector<ListNode*>& lists) {
+	int i = 0;
+	while (lists.size() > 1) {
+		vector<ListNode*> mergedLists;
+		cout << "Before For Loop\n";
+		printVectorOfLists(lists);
+
+		for (int i = 0; i < lists.size(); i += 2) {
+			ListNode* l1 = lists[i];
+			ListNode* l2 = (i + 1 < lists.size()) ? lists[i + 1] : nullptr;
+			ListNode* merged = mergeTwoLists(l1, l2);
+			mergedLists.push_back(merged);
+		}
+		cout << "\nMerged Lists Content -->\n";
+		printVectorOfLists(mergedLists);
+		cout << i + 1 << " While Iteration\n ";
+		lists = mergedLists;
+		printVectorOfLists(lists);
+		cout << "\n";
+		i++;
+	}
+
+	return (lists.empty()) ? nullptr : lists[0];
+}
+ListNode* mergeKLists(vector<ListNode*>& lists) {
+	ListNode* result = new ListNode();
+	ListNode* temp = result;
+	//int i = 0;
+	while (true)
+	{
+		int minIndex = -1;
+		int minValue = INT_MAX;
+		for (int j = 0; j < lists.size(); j++)
+		{
+			if (lists[j] && lists[j]->val < minValue)
+			{
+				minValue = lists[j]->val;
+				minIndex = j;
+			}
+		}
+		if (minIndex == -1)
+		{
+			break; //agr sare minimum nikl gye hain or koi mzeed nai reh gya to ye while(true) bhai saab break ho jyen ge
+		}
+		temp->next = lists[minIndex];
+		lists[minIndex] = lists[minIndex]->next;
+		temp = temp->next;
+		
+	}
+	return result->next;
+}
+int main23() {
+	// Create three sorted linked lists for testing
+	ListNode* list1 = new ListNode(1);
+	list1->next = new ListNode(4);
+	list1->next->next = new ListNode(5);
+
+	ListNode* list2 = new ListNode(1);
+	list2->next = new ListNode(3);
+	list2->next->next = new ListNode(4);
+
+	ListNode* list3 = new ListNode(2);
+	list3->next = new ListNode(6);
+
+	// Store the lists in a vector
+	vector<ListNode*> lists = { list1, list2, list3 };
+
+	// Test the mergeKLists function
+	ListNode* mergedList = mergeKLists(lists);
+
+	// Print the merged list for verification
+	cout << "Merged List: ";
+	ListNode* current = mergedList;
+	while (current != nullptr) {
+		cout << current->val << " ";
+		current = current->next;
+	}
+	cout << endl;
+
+	return 0;
+}
