@@ -637,4 +637,54 @@ int main19()
 	return 0;
 
 }
+//1 2 3 4 5 
+ListNode* reorderList(ListNode* head) {
+	if (head->next == nullptr||head==nullptr)
+	{
+		return head;
+	}
+	ListNode* slow = head; //1
+	ListNode* fast= head;//1
+	while (fast->next != nullptr && fast->next->next != nullptr)
+	{
+		slow =slow->next;
+		fast =fast->next->next;
+	}
+	ListNode* remhalf = slow->next;//4 5
+	remhalf=reverseList(remhalf);//5 4
+	ListNode* current = head;//1
+	ListNode* remhalfptr = remhalf;
+	while (remhalfptr != nullptr)
+	{
+		ListNode* newNode = current->next; //2->3
+		current->next = remhalfptr; //1->5->2->3
+		remhalfptr = remhalfptr->next;//4
+		current->next->next = newNode;
+		current = newNode;
+	}
+	// Setting the last node's next to nullptr
+	if (current != nullptr)
+	{
+		current->next = nullptr;
+	}
+	return head;
+}
+int main20()
+{
+	ListNode* node = new ListNode(1);
+	node->next = new ListNode(2);
+	node->next->next = new ListNode(3);
+	node->next->next->next = new ListNode(4);
+//	node->next->next->next->next = new ListNode(5);
+	/*stack<int>S=reorderList(node);
+	while (!S.empty())
+	{
+		cout << S.top()<<" ";
+		S.pop();
+	}*/
+	printList(node);
+	node = reorderList(node);
+	printList(node);
+	return 0;
+}
 
