@@ -764,3 +764,50 @@ int main21()
 	node = removeNthFromEnd(node, 1);
 	printList(node);
 }
+bool hasCycle(ListNode* head) {
+	if (head == nullptr || head->next == nullptr)
+	{
+		return 0;
+	}
+	ListNode* slow = head;
+	ListNode* fast = head;
+	while (fast->next != nullptr && fast->next->next != nullptr)
+	{
+		slow = slow->next;
+		fast = fast->next->next;
+		if (slow == fast)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+int main22() {
+	// Create a linked list with a cycle for testing
+	ListNode* head = new ListNode(1);
+	head->next = new ListNode(2);
+	head->next->next = new ListNode(3);
+	head->next->next->next = new ListNode(4);
+	head->next->next->next->next = head->next;  // Creating a cycle
+
+	// Test the hasCycle function
+	bool result = hasCycle(head);
+
+	// Output the result
+	if (result) {
+		cout << "The linked list has a cycle.\n";
+	}
+	else {
+		cout << "The linked list does not have a cycle.\n";
+	}
+
+	// Deallocate memory for the linked list (assuming it was created dynamically)
+	ListNode* current = head;
+	while (current != nullptr) {
+		ListNode* next = current->next;
+		delete current;
+		current = next;
+	}
+
+	return 0;
+}
