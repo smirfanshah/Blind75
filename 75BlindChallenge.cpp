@@ -687,4 +687,80 @@ int main20()
 	printList(node);
 	return 0;
 }
+ListNode* removeNthFromEnd(ListNode* head, int n) {
+	if (head == nullptr)
+	{
+		return head;
+	}
+	int count = 0;
+	ListNode* temp = head;
+	while (temp!= nullptr)
+	{
+		count++;
+		temp = temp->next;
+	}
+	int index = count - n;
+	if (index == 0) {
+		ListNode* newHead = head->next;
+		delete head; // Deallocate memory for the old head
+		return newHead; // Update head pointer
+	}
+	ListNode* temp1 = head;
+	while (index > 1) {
+		temp1 = temp1->next;
+		index--;
+	}
 
+	//ListNode* nodeToRemove = temp1->next;
+	temp1->next = temp1->next->next;
+
+	//delete nodeToRemove; // Deallocate memory for the removed node
+
+	return head;
+
+}
+ListNode* removeNthFromEnd2(ListNode* head, int n) {
+	if (head == nullptr) {
+		return nullptr;
+	}
+
+	int count = 0;
+	ListNode* temp = head;
+	while (temp != nullptr) {
+		count++;
+		temp = temp->next;
+	}
+
+	int index = count - n;
+
+	// Check if removing the head
+	if (index == 0) {
+		ListNode* newHead = head->next;
+		delete head; // Deallocate memory for the old head
+		return newHead; // Update head pointer
+	}
+
+	ListNode* temp1 = head;
+	while (index > 1) {
+		temp1 = temp1->next;
+		index--;
+	}
+
+	ListNode* nodeToRemove = temp1->next;
+	temp1->next = temp1->next->next;
+
+	delete nodeToRemove; // Deallocate memory for the removed node
+
+	return head;
+}
+
+int main21()
+{
+	ListNode* node = new ListNode(1);
+	node->next = new ListNode(2);
+	//node->next->next = new ListNode(3);
+	//node->next->next->next = new ListNode(4);
+	printList(node);
+	node = removeNthFromEnd(node, 1);
+	printList(node);
+}
