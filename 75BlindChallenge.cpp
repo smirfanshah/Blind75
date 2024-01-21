@@ -976,3 +976,32 @@ int main25()
 	cout << "\nDepth=" << depth;
 	return 0;
 }
+bool isSameTree(TreeNode* p, TreeNode* q) {
+	if (!p && !q)
+	{
+		return true;
+	}
+	if ((p == nullptr || q == nullptr) || (p->val != q->val))
+	{
+		return false;
+	}
+	return isSameTree(p->left, q->left) &&
+		isSameTree(p->right, q->right);
+}
+int main26()
+{
+	TreeNode* root = new TreeNode(1);
+	root->left = new TreeNode(2);
+	root->right = new TreeNode(3);
+	TreeNode* root1 = new TreeNode(1);
+	root1->left = new TreeNode(2);
+	root1->right = new TreeNode(3);
+	if (isSameTree(root, root1))
+	{
+		cout << "true";
+	}
+	else{
+		cout << "false";
+	}
+	return 0;
+}
