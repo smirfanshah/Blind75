@@ -1,0 +1,29 @@
+--------------------------------------------Problem 2:
+
+Gloria the bunny finds herself once again amidst an array game. This time, however, the game has slightly intensified with a third array coming into play. Your task is to develop a Python function to maneuver Gloria through her quest, yielding the summation of the maximum values she encounters from arrayB and arrayC together.
+
+Gloria's journey begins at the first element of arrayA. Gloria's movement pattern follows a fixed sequence that repeats: arrayA -> arrayB -> arrayA -> arrayC. In other words, Gloria always alternates between arrayA and either arrayB or arrayC, following this pattern:
+
+First hop: arrayA to arrayB
+Second hop: arrayB to arrayA
+Third hop: arrayA to arrayC
+Fourth hop: arrayC to arrayA
+Then the pattern starts over, continuing until the journey ends.
+
+The rule to decide Gloria's move is: She uses the current element's value in the array as an index for her next array. For example, if Gloria is at arrayA[1]=2, she would move to arrayB[2].
+
+The pattern repeats itself until one of the following occurs:
+
+Gloria's path repeats by visiting a position in arrayB or arrayC that was already visited, indicating that she is stuck in a loop and cannot progress further, OR
+Gloria tries to access an index that exceeds the length of an array (for example, attempting to access arrayA[4] when arrayA only contains 4 items indexed from 0 to 3), in which case Gloria's journey should also stop.
+Your task is to calculate the sum of the maximum values that Gloria encounters in arrayB and arrayC during her journey.
+
+Each input array consists of n items, where n ranges from 
+1
+1 to 
+100
+100, inclusive. Every item in the arrays is a non-negative integer and falls within the range of 
+0
+0 to 
+99
+99, inclusive.
