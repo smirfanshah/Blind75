@@ -80,7 +80,25 @@ def solution3(roadA, roadB):
     return result
             
             
-     
+def solution4(numbers):
+    new_numbers = []
+    for num in numbers:
+        new_numbers.append(num + 1 if num % 10 != 0 else 1)
+    
+    freq = {} 
+    for num in new_numbers:
+        if num in freq:
+            freq[num] += 1
+        else:
+            freq[num] = 1
+    
+    result = []
+    for num in set(new_numbers):
+        result.append(num * freq[num])
+    
+    result.sort()
+    
+    return result
 
 def main():
     arrayA = [2, 1, 3, 0]
