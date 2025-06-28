@@ -55,6 +55,33 @@ def solution2(arrayA, arrayB, arrayC):
         indexA = arrayC[indexC]
         maxC= max(maxC,indexA)
 
+def solution3(roadA, roadB):
+    
+    result = [] 
+    for i in range(len(roadA)):
+        indexA = i
+        distance = 0
+        visitedA = set()
+        visitedB = set()
+        
+        for j in range(len(roadB)):
+            if indexA in visitedA:
+                break
+            visitedA.add(indexA)
+            distance += 1
+            indexB = roadA[indexA]
+            if indexB in visitedB:
+                break
+            visitedB.add(indexB)
+            distance += 1
+            indexA = roadB[indexB]
+        result.append(distance)
+    
+    return result
+            
+            
+     
+
 def main():
     arrayA = [2, 1, 3, 0]
     arrayB = [1, 3, 2, 4]

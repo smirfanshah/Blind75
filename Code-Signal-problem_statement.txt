@@ -27,3 +27,43 @@ Each input array consists of n items, where n ranges from
 0 to 
 99
 99, inclusive.
+
+--------------------------------------Probelm 3:
+
+Alice loves to play a jumping game on two parallel roads, roadA and roadB, each filled with integers. The game begins with Alice choosing a starting point on roadA, and then moving according to the following rules:
+
+Alice chooses a starting point on roadA.
+Each element in both the roads dictate exactly where to jump on the other road. If Alice is at the 
+i
+i-th position of roadA, where roadA[
+i
+i] = 
+x
+x, then Alice moves to the 
+x
+x-th position of roadB. Likewise, if Alice is at the 
+i
+i-th position of roadB, where roadB[
+i
+i] = 
+y
+y, then she moves to the 
+y
+y-th position of roadA.
+Alice continues these jumps until she ends up at an already visited spot on either road in the current route, which signifies the end of this game. It's important to note that if a spot was visited in a previous route but not in the current route, it is not considered as an already visited spot.
+The distance covered in each jump is defined as 1 unit, no matter where she jumps to on the other road.
+Your task is to create a function that receives these two roads, roadA and roadB, as its parameters. The function should calculate and return an array of total distances Alice covers during her game for each possible starting point on roadA. More specifically, the result should be an array results, where results[i] denotes the total distance covered if Alice starts from roadA[i].
+
+The two input lists, roadA and roadB, contain 
+n
+n and 
+m
+m number of elements respectively. The number of elements in each list can range from 1 to 100, inclusive. Each element in roadA can have a value ranging from 0 to 
+m
+−
+1
+m−1, inclusive. Similarly, each element in roadB can have a value ranging from 0 to 
+n
+−
+1
+n−1, inclusive. This ensures that any element in either of the lists will be a valid index in the other list.
