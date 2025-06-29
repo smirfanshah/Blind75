@@ -100,6 +100,21 @@ def solution4(numbers):
     
     return result
 
+
+def solution5(s): #Freq 2
+    freq_dict = {}
+    for letter in set(s):
+        minus = ord(letter) - 3
+        if minus >= ord('a'):
+            num_rep = minus * s.count(letter)
+        else:
+            num_rep = (minus + 26) * s.count(letter)
+        
+        freq_dict[letter] = num_rep
+        
+    return freq_dict
+    
+
 def main():
     arrayA = [2, 1, 3, 0]
     arrayB = [1, 3, 2, 4]
@@ -117,3 +132,7 @@ def main():
 # Call main
 if __name__ == "__main__":
     main()
+
+
+
+

@@ -1,3 +1,6 @@
+
+###Python coding practice for coding interviews
+
 --------------------------------------------Problem 2:
 
 Gloria the bunny finds herself once again amidst an array game. This time, however, the game has slightly intensified with a third array coming into play. Your task is to develop a Python function to maneuver Gloria through her quest, yielding the summation of the maximum values she encounters from arrayB and arrayC together.
