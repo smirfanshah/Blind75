@@ -113,14 +113,36 @@ def solution5(s): #Freq 2
         freq_dict[letter] = num_rep
         
     return freq_dict
+
+
+def solution6(sentence):
+    new_s = ""
+    for letter in sentence:
+        s = ord(letter)
+        
+        if letter.isalnum():
+                
+            if s == ord('0'):
+                s += 10
+            elif s == ord('A'):
+                s += 26
+            elif s == ord('a'):
+                s += 26
+            
+            s-=1
+            new_s += chr(s)
     
+    result = []
+    for letter in set(new_s):
+        res = abs(ord(letter) - new_s.count(letter))
+        result.append(res)
+    result.sort()
+    return result
 
 def main():
-    arrayA = [2, 1, 3, 0]
-    arrayB = [1, 3, 2, 4]
-    arrayC = [4, 2, 5, 1]
+    string = "Hello, 123!"
     expected_output= 7
-    result = solution2(arrayA, arrayB, arrayC)
+    result = solution(string)
     print("Output:", result)
     
     if result == expected_output:
