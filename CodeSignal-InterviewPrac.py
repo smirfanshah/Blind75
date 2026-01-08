@@ -158,3 +158,51 @@ if __name__ == "__main__":
 
 
 
+def solution(inputString, numbers):
+    """You are given a string of length at most 100 and an array of at most 100 integers. The task requires you to process both the string and the array simultaneously from their first elements, and continue as long as certain condition on the array is satisfied. Return the modified string and certain portion of the original array.
+
+    For the string, your goal is to replace every occurrence of a vowel with the next vowel in the sequence, wrapping around from 'u' to 'a'. If the character is a consonant, it should be replaced with the next consonant in alphabetical order, wrapping around from 'z' to 'b'.
+
+    Meanwhile, for the array of integers, you are instructed to multiply each integer by 3 and add the result to a total until that total reaches or exceeds 100. Each integer in the array can range from
+    50 to 50, inclusive.
+
+    Finally, return the modified string and any unprocessed integers from the array in their original order.
+
+    Stop processing when the total sum, restricted to 100, is met or when all elements have been processed. In other words, process both the string and the array while the condition holds true.
+
+    If you process all elements in the array and the string, and the total sum still has not reached 100, simply return the processed string and an empty list.
+    Consider using Python's built-in functions such as ord(), chr(), and round() to aid in achieving this.
+
+    The final return format should be a tuple containing the modified string and the list of unprocessed integers.
+
+    Example:
+
+    Input:
+
+    String: "examplestring"
+    Array: {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}"""
+
+
+
+    vowels = 'aeiou'
+    consonants = 'bcdfghjklmnpqrstvwxyz'
+    total= 0
+    result = ''
+    for ch in inputString:
+        if not numbers:
+            break
+            
+        if ch in vowels:
+            result += vowels[(vowels.index(ch)+1) %len(vowels)]
+        else:
+            result += consonants[(consonants.index(ch)+1) %len(consonants)]
+        
+        total += numbers[0]*3
+            
+        numbers.pop(0)
+        if total>=100:
+            break
+        
+    return result, numbers
+        
+                    
