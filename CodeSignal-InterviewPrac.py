@@ -207,13 +207,38 @@ def solution8(arr, text):
         
     return res_text, arr
 
-def main():
-    arr = [2,3,5,7,11,13,17,19,23,29]
-    string = 'the quick brown fox jumps over the lazy dog'
-    # expected_output= 7
-    res_text, res_arr,  = solution(arr, string)
-    print("Output:", res_text,res_arr)
+
+import math
+def solution(dungeon, health):
+    """
+    You are given an array representing a dungeon where each element indicates the health points lost (negative value) or gained (positive value) at that position. You start with a certain amount of health points and can choose a step size to navigate through the dungeon. Your goal is to find the optimal step size that allows you to traverse the dungeon without your health dropping to zero or below, while minimizing the total health lost.
+    """
+    best_health=math.inf
+    optimal_step=0
     
+    for step in range(1, len(dungeon)+1):
+        health_loss=0
+        exit = False
+        for i in range(0, len(dungeon),step):
+            health_loss+= dungeon[i]
+            if health_loss>health:
+                exit = True
+                break
+        if not exit and health_loss<best_health:
+            optimal_step = step
+            best_health = health_loss
+    
+    if optimal_step:
+        return optimal_step
+    else:
+        return -1
+    
+
+def main():
+    dungeon = [0, -1, 1, 0, -1]
+    health = 3
+    step= solution(dungeon, health)
+    print("Optimal Step:", step)
     # if result == expected_output:
     #     print("Test passed!")
     # else:
