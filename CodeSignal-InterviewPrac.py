@@ -139,26 +139,11 @@ def solution6(sentence):
     result.sort()
     return result
 
-def main():
-    string = "Hello, 123!"
-    expected_output= 7
-    result = solution(string)
-    print("Output:", result)
-    
-    if result == expected_output:
-        print("Test passed!")
-    else:
-        print("Test failed.")
-
-
-# Call main
-if __name__ == "__main__":
-    main()
 
 
 
 
-def solution(inputString, numbers):
+def solution7(inputString, numbers):
     """You are given a string of length at most 100 and an array of at most 100 integers. The task requires you to process both the string and the array simultaneously from their first elements, and continue as long as certain condition on the array is satisfied. Return the modified string and certain portion of the original array.
 
     For the string, your goal is to replace every occurrence of a vowel with the next vowel in the sequence, wrapping around from 'u' to 'a'. If the character is a consonant, it should be replaced with the next consonant in alphabetical order, wrapping around from 'z' to 'b'.
@@ -206,3 +191,35 @@ def solution(inputString, numbers):
     return result, numbers
         
                     
+def solution8(arr, text):
+    accumlator = 0
+    res_text=''
+    for char in text:
+        num = arr[0]
+        accumlator += abs(num-3)
+        if(accumlator>30):
+            break
+        arr.pop(0)
+        if ord(char)<(ord('a')+26) and ord(char)>=ord('a'):
+            res_text+=chr(((ord(char)-ord('a')+1)%26)+ord('a'))
+        else:
+            res_text+=char
+        
+    return res_text, arr
+
+def main():
+    arr = [2,3,5,7,11,13,17,19,23,29]
+    string = 'the quick brown fox jumps over the lazy dog'
+    # expected_output= 7
+    res_text, res_arr,  = solution(arr, string)
+    print("Output:", res_text,res_arr)
+    
+    # if result == expected_output:
+    #     print("Test passed!")
+    # else:
+    #     print("Test failed.")
+
+
+# Call main
+if __name__ == "__main__":
+    main()
