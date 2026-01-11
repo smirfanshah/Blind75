@@ -257,18 +257,65 @@ def solution10(garden, start, direction):
 
     return valid_steps[-1] if valid_steps else -1
 
+def Solution10_cleverApproach(garden, start, direction):
+    n = len(garden)
+    required_types = set(garden)
+    required_count = len(required_types)
 
-# def main():
-#     dungeon = [0, -1, 1, 0, -1]
-#     health = 3
-#     step= solution(dungeon, health)
-#     print("Optimal Step:", step)
-#     # if result == expected_output:
-#     #     print("Test passed!")
-#     # else:
-#     #     print("Test failed.")
+    best_step = -1
+
+    for step in range(1, n + 1):
+        visited = set()
+        i = start
+
+        while 0 <= i < n:
+            visited.add(garden[i])
+
+            if len(visited) == required_count:
+                best_step = step
+                break
+
+            i += step * direction
+
+    return best_step
 
 
-# # Call main
-# if __name__ == "__main__":
-#     main()
+def concat_values(array):
+    return ''.join(map(str,array))
+def solution11(array1, array2):
+    """You are given two arrays of equal length. Your task is to find a rotation of the first array that minimizes the manhattan distance(sum of absolute differences between corresponding elements of the two arrays). If multiple rotations yield the same minimum sum, return the rotation that results in the smallest concatenated value when the elements are joined together as strings.:"""
+    size= len(array1)
+    best_score= math.inf
+    best_rotation= None
+    for i in range(size):
+        score =0
+        for j in range(size):
+            score+= abs(array1[j-i]-array2[j])
+        
+        rotated = array1[-i:]+array1[:-i] if i!=0 else array1
+
+        if score<best_score or (score==best_score and concat_values(rotated)<concat_values(best_rotation)):
+             best_score=score
+             best_rotation = rotated
+
+    return best_rotation, best_score
+
+
+def main():
+    array1 = [10, 2, 3, 4, 5]
+    array2 = [5, 4, 3, 2, 10]
+
+    array, score= solution(array1, array2)
+    print("Array:",array)
+    print("Scope:",score)
+
+    # print("Optimal Step:", step)
+    # if result == expected_output:
+    #     print("Test passed!")
+    # else:
+    #     print("Test failed.")
+
+
+# Call main
+if __name__ == "__main__":
+    main()
