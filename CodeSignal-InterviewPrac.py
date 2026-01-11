@@ -209,7 +209,7 @@ def solution8(arr, text):
 
 
 import math
-def solution(dungeon, health):
+def solution9(dungeon, health):
     """
     You are given an array representing a dungeon where each element indicates the health points lost (negative value) or gained (positive value) at that position. You start with a certain amount of health points and can choose a step size to navigate through the dungeon. Your goal is to find the optimal step size that allows you to traverse the dungeon without your health dropping to zero or below, while minimizing the total health lost.
     """
@@ -234,17 +234,41 @@ def solution(dungeon, health):
         return -1
     
 
-def main():
-    dungeon = [0, -1, 1, 0, -1]
-    health = 3
-    step= solution(dungeon, health)
-    print("Optimal Step:", step)
-    # if result == expected_output:
-    #     print("Test passed!")
-    # else:
-    #     print("Test failed.")
+def solution10(garden, start, direction):
+    """You are given a circular garden represented as an array of integers, where each integer represents a type of flower. You start at a specific position in the garden and can move in either a clockwise or counterclockwise direction. Your goal is to find the largest step size that allows you to visit all types of flowers in the garden at least once."""
+    all_flowers = set(garden)
+    n = len(garden)
+    valid_steps = []
+
+    path = garden[:]
+
+    if direction == -1:
+        path.reverse()
+        start = n - 1 - start
+
+    for step in range(1, n + 1):
+        visited = set()
+
+        for i in range(start, n, step):
+            visited.add(path[i])
+            if len(visited) == len(all_flowers):
+                valid_steps.append(step)
+                break
+
+    return valid_steps[-1] if valid_steps else -1
 
 
-# Call main
-if __name__ == "__main__":
-    main()
+# def main():
+#     dungeon = [0, -1, 1, 0, -1]
+#     health = 3
+#     step= solution(dungeon, health)
+#     print("Optimal Step:", step)
+#     # if result == expected_output:
+#     #     print("Test passed!")
+#     # else:
+#     #     print("Test failed.")
+
+
+# # Call main
+# if __name__ == "__main__":
+#     main()
