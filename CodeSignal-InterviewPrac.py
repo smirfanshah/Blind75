@@ -330,13 +330,37 @@ def solution12(s):
             
     return removed
 
-def main():
-    array1 = [10, 2, 3, 4, 5]
-    array2 = [5, 4, 3, 2, 10]
+def solution13(knights):
+    """ You are given an array representing the strength of knights in a tournament. In each round, every knight attacks the knight to their immediate right (the last knight attacks the first knight). The strength of each knight is reduced by the strength of the knight they attack. If a knight's strength drops to zero or below, they are eliminated from the tournament. The process continues until only one knight remains or all remaining knights have equal strength. Your task is to determine the number of rounds that will be played before the tournament concludes."""
+    for round in range(0,len(knights)):
+        if len(knights) ==1 or (len(knights)==2 and knights[0]==knights[1]):
+                return round
+                
+        store_indices =[]
+        knights_copy = knights[:]
+        for i in range(len(knights)):
+            knights_copy[i] = knights[i] - knights[(i+1)%len(knights)]
+            if knights_copy[i]<=0:
+                store_indices.append(i)
+                
+        for index in reversed(store_indices):
+            knights_copy.pop(index)
+        knights = knights_copy[:]       
+        
+        
 
-    array, score= solution(array1, array2)
-    print("Array:",array)
-    print("Scope:",score)
+def main():
+
+    knights = [70, 80, 60]
+    result = tournament(knights)
+    print("Output:", result)
+
+    # array1 = [10, 2, 3, 4, 5]
+    # array2 = [5, 4, 3, 2, 10]
+
+    # array, score= solution(array1, array2)
+    # print("Array:",array)
+    # print("Scope:",score)
 
     # print("Optimal Step:", step)
     # if result == expected_output:
