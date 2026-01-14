@@ -300,6 +300,35 @@ def solution11(array1, array2):
 
     return best_rotation, best_score
 
+def solution12(s):
+    """ You are given a string consisting of lowercase letters. You need to repeatedly perform the following operation until only one character remains in the string: Compare each pair of adjacent characters in the string. For each pair, remove the character with the lower ASCII value. If the string has an odd length, the last character remains unchanged in that round. Return a list of characters that were removed from the string in the order they were removed."""
+    current = list(s)
+    removed = []
+    while current:
+        if len(current)==1:
+            removed.append(current[0])
+            break
+            
+        i =0
+        next_round = []
+        while i < len(current):
+            if i == len(current)-1:
+                next_round.append(current[i])
+            else:
+                a,b = current[i], current[i+1]
+                print(i)
+                if a<b:
+                    next_round.append(b)
+                    removed.append(a)                    
+                    
+                else:
+                    next_round.append(a)
+                    removed.append(b)
+                    
+            i+=2
+        current = next_round
+            
+    return removed
 
 def main():
     array1 = [10, 2, 3, 4, 5]
